@@ -7,6 +7,7 @@ var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { append } = require('express/lib/response');
 
 var app = express();
 
@@ -22,9 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  genid: function(req) {
-  return genuuid() // use UUIDs for session IDs
-},
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
